@@ -1,0 +1,16 @@
+{
+  "name": "nodeproject",
+  "version": "1.0.0",
+  "description": "Nodejs to deploy dashboard from SmartAgroVisualizationTool project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Javier Calvo Garcia",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "jade": "^1.11.0",
+    "socket.io": "^2.0.1"
+  }
+}
