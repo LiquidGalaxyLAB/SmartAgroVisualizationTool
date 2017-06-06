@@ -12,6 +12,9 @@ var sensors = require('./routes/sensors');
 
 var app = express();
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -28,6 +31,14 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/sensor-api')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
+
+io.on('connection', (socket) => {
+  console.log('user connected');
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
 
 app.use('/', routes);
 app.use('/sensors', sensors);

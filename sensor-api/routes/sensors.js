@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var http = require('http').Server(express);
+var io = require('socket.io')(http);
+
 var mongoose = require('mongoose');
 var sensor = require('../models/sensor.js');
 
@@ -17,7 +20,6 @@ router.get('/', function(req, res) {
     res.json(sensors);
   });
 });
-
 
 /* GET /sensors/sensorId */
 /*
@@ -41,8 +43,24 @@ router.get('/:sensorName', function(req, res) {
 router.post('/', function(req, res, next) {
   sensor.create(req.body, function (err, post) {
     if (err) return next(err);
+    io.sockets.emit('sensor', res.json(post));
     res.json(post);
   });
+});
+
+/* PUT /sensors/sensorName */
+router.put('/:sensorName', function(req, res) {
+  sensor.findOne({ name: req.params.sensorName }).exec(function(err, sensor) {
+    if (err) console.log(req.params.sensorName);
+    console.log(sensor);
+    sensor.temperatureValue = req.body.temperatureValue;
+    sensor.humidityValue = req.body.humidityValue;
+
+    sensor.save(function(err) {
+      if (err) console.log(req.params.sensorName);
+      res.json({ message: 'Sensor updated' });
+    });
+  })
 });
 
 module.exports = router;
