@@ -8,4 +8,8 @@ var sensorSchema = new mongoose.Schema({
   updated_at: { type: Date, default: Date.now },
 });
 
+sensorSchema.query.byName = function(name) {
+  return this.find({ name: new RegExp(name, 'i') });
+}
+
 module.exports = mongoose.model('sensor', sensorSchema);
