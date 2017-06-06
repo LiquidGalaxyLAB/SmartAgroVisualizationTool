@@ -5,8 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongoose = require('mongoose');
+
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var sensors = require('./routes/sensors');
 
 var app = express();
 
@@ -21,8 +23,14 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb://localhost/sensor-api')
+  .then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
+
 app.use('/', routes);
-app.use('/users', users);
+app.use('/sensors', sensors);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
