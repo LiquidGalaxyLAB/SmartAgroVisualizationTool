@@ -1,5 +1,8 @@
 import sys
-sensorList = sys.argv[1]
+import json
+file = open('generateThis.json', 'r')
+readVariable = file.read()
+sensorsJson = json.loads(readVariable)
 file = open('test.txt', 'w')
-file.write(sensorList[0].name)
-file.close();
+file.write(sensorsJson['name'])
+file.close()

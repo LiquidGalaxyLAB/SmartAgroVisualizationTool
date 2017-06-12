@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var sensor = require('../models/sensor.js');
 
 var spawn = require('child_process').spawn;
+var PythonShell = require('python-shell');
+var fs = require('fs');
 
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -54,21 +56,44 @@ router.post('/', function(req, res, next) {
 
 /* POST to call kml generator with parameters by call request bodt */
 router.post('/generateKml', function(req, res) {
-  arg1 = [
-    {
-      name: "kml_test",
-      data: {
-        temperature: 30.5
+  sensorsList = {
+    name: "kml_test",
+    sensors: [
+      {
+        name: "sensor1",
+        data: {
+          temperature: 30.5
+        },
+        coords: {
+          lat: 0.6,
+          lng: 41.1
+        }
       },
-      coords: {
-        lat: 0.6,
-        lng: 41.1
+      {
+        name: "sensor2",
+        data: {
+          temperature: 30.5
+        },
+        coords: {
+          lat: 0.6,
+          lng: 41.1
+        }
       }
+    ]
+  };
+  stringg = JSON.stringify(sensorsList);
+  fs.writeFile("./generateThis.json", stringg, function(err) {
+    if (err) {
+      return console.log(err);
     }
-  ];
-  var process = spawn('python', ['./kml_generator.py', arg1]);
-  res.json(arg1);
-})
+    console.log("Json generator file saved correctly!");
+    PythonShell.run('routes/kml_generator.py', function (err) {
+      if (err) console.log(err);
+      console.log("KML generated correctly!");
+      res.json('OK');
+    });
+  });
+});
 
 /* PUT /sensors/sensorName */
 router.put('/:sensorName', function(req, res) {
