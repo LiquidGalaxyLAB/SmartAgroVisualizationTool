@@ -11,6 +11,8 @@ var spawn = require('child_process').spawn;
 var PythonShell = require('python-shell');
 var fs = require('fs');
 
+var xml = require('xml');
+
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -46,6 +48,11 @@ router.get('/:sensorName', function(req, res) {
   })
 });
 
+router.get('/kml/getKml/:kmlName', function(req, res) {
+  res.set('Content-Type', 'text/xml');
+  res.sendfile('public/kmls/' + req.params.kmlName + '.kml');
+});
+
 /* POST /sensors */
 router.post('/', function(req, res, next) {
   sensor.create(req.body, function (err, post) {
@@ -55,7 +62,7 @@ router.post('/', function(req, res, next) {
 });
 
 /* POST to call kml generator with parameters by call request bodt */
-router.post('/generateKml', function(req, res) {
+router.post('/kml/generateKml', function(req, res) {
   /* EXAMPLE POST call Body (raw - JSON (application/json as header))
   {
    "name": "kml_test",
