@@ -72,7 +72,7 @@ router.post('/generateKml', function(req, res) {
       {
         name: "sensor2",
         data: {
-          temperature: 30.5
+          temperature: 30.6
         },
         coords: {
           lat: 0.62,
@@ -87,7 +87,7 @@ router.post('/generateKml', function(req, res) {
       return console.log(err);
     }
     console.log("Json generator file saved correctly!");
-    PythonShell.run('routes/kml_generator.py', function (err) {
+    PythonShell.run('public/pythonscripts/kml_generator.py', function (err) {
       if (err) console.log(err);
       console.log("KML generated correctly!");
       res.json('OK');

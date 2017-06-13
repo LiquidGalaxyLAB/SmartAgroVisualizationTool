@@ -1,1 +1,1 @@
-{"name":"kml_test","sensors":[{"name":"sensor1","data":{"temperature":30.5},"coords":{"lat":0.6,"lng":41.1}},{"name":"sensor2","data":{"temperature":30.5},"coords":{"lat":0.62,"lng":41.2}}]}
+{"name":"kml_test","sensors":[{"name":"sensor1","data":{"temperature":30.5},"coords":{"lat":0.6,"lng":41.1}},{"name":"sensor2","data":{"temperature":30.6},"coords":{"lat":0.62,"lng":41.2}}]}
