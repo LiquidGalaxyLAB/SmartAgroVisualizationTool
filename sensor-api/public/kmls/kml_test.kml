@@ -10,7 +10,7 @@
         </Placemark>
         <Placemark id="feat_3">
             <name>sensor2</name>
-            <description>30.6</description>
+            <description>30.5</description>
             <Point id="geom_1">
                 <coordinates>41.2,0.62,0.0</coordinates>
             </Point>

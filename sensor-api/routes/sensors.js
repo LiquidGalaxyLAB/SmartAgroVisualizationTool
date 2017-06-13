@@ -56,36 +56,26 @@ router.post('/', function(req, res, next) {
 
 /* POST to call kml generator with parameters by call request bodt */
 router.post('/generateKml', function(req, res) {
-  sensorsList = {
-    name: "kml_test",
-    sensors: [
-      {
-        name: "sensor1",
-        data: {
-          temperature: 30.5
-        },
-        coords: {
-          lat: 0.6,
-          lng: 41.1
-        }
-      },
-      {
-        name: "sensor2",
-        data: {
-          temperature: 30.6
-        },
-        coords: {
-          lat: 0.62,
-          lng: 41.2
-        }
-      }
-    ]
-  };
-  stringg = JSON.stringify(sensorsList);
-  fs.writeFile("public/generators/generator.json", stringg, function(err) {
-    if (err) {
-      return console.log(err);
-    }
+  /* EXAMPLE POST call Body (raw - JSON (application/json as header))
+  {
+   "name": "kml_test",
+   "sensors": [
+     {"name": "sensor1", "data": {"temperature": 30.5},
+       "coords": {"lat": 0.6, "lng": 41.1}
+     },
+     {"name": "sensor2", "data": {"temperature": 30.5},
+       "coords": {"lat": 0.62, "lng": 41.2}
+     }
+   ]
+ }
+ */
+  if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    console.log('ERROR: Generate KML call without object');
+    res.json('ERROR');
+  }
+  aux_string = JSON.stringify(req.body);
+  fs.writeFile("public/generators/generator.json", aux_string, function(err) {
+    if (err) return console.log(err);
     console.log("Json generator file saved correctly!");
     PythonShell.run('public/pythonscripts/kml_generator.py', function (err) {
       if (err) console.log(err);

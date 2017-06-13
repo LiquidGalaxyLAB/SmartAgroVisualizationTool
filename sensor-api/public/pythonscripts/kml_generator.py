@@ -15,7 +15,7 @@ for element in json_data['sensors']:
     point['coordinates']['lat'] = element['coords']['lat']
     point['coordinates']['lng'] = element['coords']['lng']
     data.append(point)
-points = PointsKml('test', data)
+points = PointsKml(json_data['name'], data)
 points.makeKML()
 
 # file = open('test.txt', 'w')
