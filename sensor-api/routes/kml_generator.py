@@ -2,7 +2,7 @@ import sys
 import json
 from generate_points import PointsKml
 
-file = open('generator.json', 'r')
+file = open('public/generators/generator.json', 'r')
 readVariable = file.read()
 json_data = json.loads(readVariable)
 

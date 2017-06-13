@@ -82,7 +82,7 @@ router.post('/generateKml', function(req, res) {
     ]
   };
   stringg = JSON.stringify(sensorsList);
-  fs.writeFile("./generator.json", stringg, function(err) {
+  fs.writeFile("public/generators/generator.json", stringg, function(err) {
     if (err) {
       return console.log(err);
     }

@@ -50,7 +50,7 @@ class PointsKml(object):
         point.description = "<img src='" + image + "' width='500' />"
 
     def saveKml(self):
-        self.kml_var.save("points.kml")
+        self.kml_var.save("public/kmls/" + self.name + ".kml")
 
 '''
 A simplekml point has these attributes:
