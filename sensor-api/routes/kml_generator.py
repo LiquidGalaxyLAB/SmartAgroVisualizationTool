@@ -1,8 +1,23 @@
 import sys
 import json
-file = open('generateThis.json', 'r')
+from generate_points import PointsKml
+
+file = open('generator.json', 'r')
 readVariable = file.read()
-sensorsJson = json.loads(readVariable)
-file = open('test.txt', 'w')
-file.write(sensorsJson['name'])
-file.close()
+json_data = json.loads(readVariable)
+
+data = []
+for element in json_data['sensors']:
+    point = {}
+    point['name'] = element['name']
+    point['description'] = element['data']['temperature']
+    point['coordinates'] = {}
+    point['coordinates']['lat'] = element['coords']['lat']
+    point['coordinates']['lng'] = element['coords']['lng']
+    data.append(point)
+points = PointsKml('test', data)
+points.makeKML()
+
+# file = open('test.txt', 'w')
+# file.write(sensorsJson['name'])
+# file.close()

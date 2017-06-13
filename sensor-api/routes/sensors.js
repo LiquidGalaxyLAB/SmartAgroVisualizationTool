@@ -75,14 +75,14 @@ router.post('/generateKml', function(req, res) {
           temperature: 30.5
         },
         coords: {
-          lat: 0.6,
-          lng: 41.1
+          lat: 0.62,
+          lng: 41.2
         }
       }
     ]
   };
   stringg = JSON.stringify(sensorsList);
-  fs.writeFile("./generateThis.json", stringg, function(err) {
+  fs.writeFile("./generator.json", stringg, function(err) {
     if (err) {
       return console.log(err);
     }
