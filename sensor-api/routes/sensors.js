@@ -87,7 +87,20 @@ router.post('/kml/generateKml', function(req, res) {
     PythonShell.run('public/pythonscripts/kml_generator.py', function (err) {
       if (err) console.log(err);
       console.log("KML generated correctly!");
-      res.json('OK');
+
+      var options = {
+        mode: 'text',
+        pythonPath: 'python',
+        pythonOptions: ['-u'],
+        scriptPath: 'public/pythonscripts/',
+        args: [req.body.name]
+      };
+
+      PythonShell.run('send_kml.py', options, function (err) {
+        if (err) console.log(err);
+        console.log("KML sent correctly!");
+        res.json('OK');
+      });
     });
   });
 });

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="feat_1">
+        <Placemark id="feat_2">
+            <name>SensorApi3</name>
+            <description>32.5</description>
+            <Point id="geom_0">
+                <coordinates>41.3,0.63,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_3">
+            <name>SensorApi2</name>
+            <description>31.5</description>
+            <Point id="geom_1">
+                <coordinates>41.2,0.62,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>

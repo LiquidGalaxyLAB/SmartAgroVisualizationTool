@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                        <kml xmlns="http://www.opengis.net/kml/2.2">
+                        <NetworkLink>
+<Link>
+                        <href>http://192.168.88.231:3000/kmls/data/SensorsListKml.kml</href>
+                        <refreshMode>onInterval</refreshMode>
+                        <refreshInterval>20</refreshInterval>
+                        </Link>
+</NetworkLink>
+                        </kml>
