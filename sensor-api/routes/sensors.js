@@ -63,19 +63,6 @@ router.post('/', function(req, res, next) {
 
 /* POST to call kml generator with parameters by call request bodt */
 router.post('/kml/generateKml', function(req, res) {
-  /* EXAMPLE POST call Body (raw - JSON (application/json as header))
-  {
-   "name": "kml_test",
-   "sensors": [
-     {"name": "sensor1", "data": {"temperature": 30.5},
-       "coords": {"lat": 0.6, "lng": 41.1}
-     },
-     {"name": "sensor2", "data": {"temperature": 30.5},
-       "coords": {"lat": 0.62, "lng": 41.2}
-     }
-   ]
- }
- */
   if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
     console.log('ERROR: Generate KML call without object');
     res.json('ERROR');
@@ -103,6 +90,19 @@ router.post('/kml/generateKml', function(req, res) {
       });
     });
   });
+  /* EXAMPLE POST call Body (raw - JSON (application/json as header))
+  {
+   "name": "kml_test",
+   "sensors": [
+     {"name": "sensor1", "data": {"temperature": 30.5},
+       "coords": {"lat": 0.6, "lng": 41.1}
+     },
+     {"name": "sensor2", "data": {"temperature": 30.5},
+       "coords": {"lat": 0.62, "lng": 41.2}
+     }
+   ]
+ }
+ */
 });
 
 /* PUT /sensors/sensorName */
@@ -119,6 +119,23 @@ router.put('/:sensorName', function(req, res) {
       res.json({ message: 'Sensor updated' });
     });
   })
+});
+
+router.delete('/delete/:id', function (req, res) {
+  sensor.findById(req.params.id, function (err, sensor) {
+    if (err) {
+      return console.log(err);
+    } else {
+      sensor.remove(function (err, sensor) {
+        if (err) {
+          return console.log(err);
+        } else {
+          console.log('DELETE sensor id: ' + sensor._id);
+          res.json({ message: 'Sensor ' + sensor.name + 'deleted' });
+        }
+      });
+    }
+  });
 });
 
 module.exports = router;
