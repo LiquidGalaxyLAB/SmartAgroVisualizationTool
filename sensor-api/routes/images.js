@@ -22,10 +22,19 @@ router.get('/', function(req, res) {
 
 });
 
+router.get('/:id', function(req, res) {
+
+});
+
 router.post('/', multer({ dest: 'public/images/' }).single('upload'),
   function(req, res) {
     console.log(req.file);
+    console.log(req.file.filename);
     res.json(req.file.originalname);
+});
+
+router.delete('/:id', function(req, res) {
+
 });
 
 
