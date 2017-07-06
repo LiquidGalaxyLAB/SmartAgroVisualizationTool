@@ -25,7 +25,10 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-
+  image.findById(req.params.id, function (err, image) {
+    if (err) return next(err);
+    res.json(image);
+  });
 });
 
 /* POST call of a image upload. It saves the image on the public/images/ folder

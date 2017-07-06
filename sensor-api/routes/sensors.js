@@ -130,7 +130,6 @@ router.delete('/delete/:id', function (req, res) {
         if (err) {
           return console.log(err);
         } else {
-          console.log('DELETE sensor id: ' + sensor._id);
           res.json({ message: 'Sensor ' + sensor.name + 'deleted' });
         }
       });
