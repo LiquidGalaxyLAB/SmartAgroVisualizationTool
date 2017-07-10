@@ -43,13 +43,13 @@ gps:
      GPSAltitude: 635.9818731117825,
      GPSTrack: 313.52734375 },
 */
-router.post('/', multer({ dest: 'public/images/' }).single('upload'),
+router.post('/', multer({ dest: 'public/photos/' }).single('upload'),
   function(req, res) {
     console.log(req.file);
     console.log(req.file.filename);
 
     try {
-      new ExifImage({ image : 'public/images/' + req.file.filename }, function (error, exifData) {
+      new ExifImage({ image : 'public/photos/' + req.file.filename }, function (error, exifData) {
           if (error)
               console.log('Error: '+error.message);
             else
