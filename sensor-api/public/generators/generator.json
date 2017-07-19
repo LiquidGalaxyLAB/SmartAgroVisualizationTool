@@ -1,1 +1,1 @@
-{"name":"SensorsListKml","sensors":[{"name":"SensorApi9","data":{"temperature":28.1},"coords":{"lat":41.58644,"lng":0.613515}},{"name":"SensorApi8","data":{"temperature":28.2},"coords":{"lat":41.590066,"lng":0.611657}}]}
+{"name":"overlaysTest","images":[{"name":"testOverlay","url":"https://upload.wikimedia.org/wikipedia/en/2/28/Philip_Fry.png","coords":{"lower-left":[18.410524,-33.903972],"lower-right":[18.411429,-33.904171],"upper-right":[18.411757,-33.902944],"upper-left":[18.41085,-33.902767]}}]}

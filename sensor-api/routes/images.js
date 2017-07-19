@@ -8,6 +8,12 @@ var ExifImage = require('exif').ExifImage;
 var mongoose = require('mongoose');
 var image = require('../models/image.js');
 
+var spawn = require('child_process').spawn;
+var PythonShell = require('python-shell');
+var fs = require('fs');
+
+var xml = require('xml');
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -76,6 +82,36 @@ router.post('/', multer({ dest: 'public/photos/' }).single('upload'),
     console.log('Error: ' + error.message);
     }
     //res.json(req.file.originalname);
+});
+
+router.post('/generateKml', function(req, res) {
+  if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    console.log('ERROR: Generate KML call without object');
+    res.json('ERROR');
+  }
+  aux_string = JSON.stringify(req.body);
+  fs.writeFile('public/generators/generator.json', aux_string, function(err) {
+    if (err) return console.log(err);
+    console.log('Json generator file saved correctly!');
+    PythonShell.run('public/pythonscripts/overlay_generator.py', function (err) {
+      if (err) console.log(err);
+      console.log('KML generated correctly!');
+
+      var options = {
+        mode: 'text',
+        pythonPath: 'python',
+        pythonOptions: ['-u'],
+        scriptPath: 'public/pythonscripts/',
+        args: [req.body.name]
+      };
+
+      PythonShell.run('send_kml.py', options, function (err) {
+        if (err) return console.log(err);
+        console.log('KML sent correctly!');
+        res.json('OK');
+      });
+    });
+  });
 });
 
 router.delete('/:id', function(req, res) {

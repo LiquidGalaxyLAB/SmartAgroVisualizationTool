@@ -2,17 +2,17 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
     <Document id="feat_1">
         <Placemark id="feat_2">
-            <name>SensorApi9</name>
-            <description>28.1</description>
+            <name>SensorApi10</name>
+            <description>28.3</description>
             <Point id="geom_0">
-                <coordinates>0.613515,41.58644,0.0</coordinates>
+                <coordinates>0.615151,41.583126,0.0</coordinates>
             </Point>
         </Placemark>
         <Placemark id="feat_3">
-            <name>SensorApi8</name>
-            <description>28.2</description>
+            <name>SensorApi9</name>
+            <description>28.1</description>
             <Point id="geom_1">
-                <coordinates>0.611657,41.590066,0.0</coordinates>
+                <coordinates>0.613515,41.58644,0.0</coordinates>
             </Point>
         </Placemark>
     </Document>

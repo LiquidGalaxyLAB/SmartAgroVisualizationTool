@@ -1,1 +1,2 @@
-http://192.168.88.231:3000/kmls/network/SensorsListKml_link.kml
+http://10.160.67.210:3000/kmls/network/SensorsListKml_link.kml
+http://10.160.67.210:3000/kmls/network/overlaysTest_link.kml

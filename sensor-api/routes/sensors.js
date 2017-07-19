@@ -61,7 +61,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* POST to call kml generator with parameters by call request bodt */
+/* POST to call kml generator with parameters by call request body */
 router.post('/kml/generateKml', function(req, res) {
   if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
     console.log('ERROR: Generate KML call without object');
