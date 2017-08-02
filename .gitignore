@@ -85,3 +85,6 @@ yarn-error.log
 
 #MongoGitignore
 db
+
+#Public photos folder
+photos/
