@@ -2,12 +2,12 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
     <Document id="feat_1">
         <GroundOverlay id="feat_2">
-            <name>testOverlay</name>
+            <name>IMG_1073_NIR.jpg</name>
             <Icon id="link_0">
-                <href>https://upload.wikimedia.org/wikipedia/en/2/28/Philip_Fry.png</href>
+                <href>http://localhost:3000/photos/d91a5d8a5c498d8987a8ea3210dc4b56</href>
             </Icon>
             <gx:LatLonQuad>
-                <coordinates>18.410524,-33.903972,0.0 18.411429,-33.904171,0.0 18.411757,-33.902944,0.0 18.41085,-33.902767,0.0</coordinates>
+                <coordinates>-2.61654853821,42.5070180418,0.0 -2.6136302948,42.5070180418,0.0 -2.61356592178,42.5087738684,0.0 -2.61590480804,42.5089004126,0.0</coordinates>
             </gx:LatLonQuad>
         </GroundOverlay>
     </Document>

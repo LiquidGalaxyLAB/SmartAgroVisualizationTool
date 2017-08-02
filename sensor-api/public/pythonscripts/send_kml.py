@@ -9,7 +9,7 @@ def createNetworkKml(kml_name):
                         <NetworkLink>\n'
 
     global_string += "<Link>\n\
-                        <href>http://10.160.67.210:3000/kmls/data/" + kml_name + ".kml" + "</href>\n\
+                        <href>http://10.160.67.190:3000/kmls/data/" + kml_name + ".kml" + "</href>\n\
                         <refreshMode>onInterval</refreshMode>\n\
                         <refreshInterval>20</refreshInterval>\n\
                         </Link>\n"
@@ -23,13 +23,14 @@ def generateKmlTxt(kml_name):
     dir_path = "public/kmls/network/"
     list_dir = os.listdir(dir_path)
     for file in list_dir:
-        f.write("http://10.160.67.210:3000/kmls/network/" + file + "\n")
+        f.write("http://10.160.67.190:3000/kmls/network/" + file + "\n")
     f.close()
 
 def sendKml():
     filePath = "public/kmls/help/kmls.txt"
-    lg_ip = "10.160.67.187"
+    lg_ip = "10.160.67.37"
     locPath = "/var/www/html/"
+    # os.system("ssh-keyscan -H " + lg_ip + " >> ~/.ssh/known_hosts")
     os.system("sshpass -p 'lqgalaxy' scp " + filePath + " lg@" + lg_ip + ":" + locPath)
 
 def main(kml_name):

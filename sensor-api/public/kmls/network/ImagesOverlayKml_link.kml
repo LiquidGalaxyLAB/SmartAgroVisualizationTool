@@ -2,7 +2,7 @@
                         <kml xmlns="http://www.opengis.net/kml/2.2">
                         <NetworkLink>
 <Link>
-                        <href>http://10.160.67.210:3000/kmls/data/overlaysTest.kml</href>
+                        <href>http://10.160.67.190:3000/kmls/data/ImagesOverlayKml.kml</href>
                         <refreshMode>onInterval</refreshMode>
                         <refreshInterval>20</refreshInterval>
                         </Link>

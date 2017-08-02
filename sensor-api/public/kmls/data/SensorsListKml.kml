@@ -15,5 +15,12 @@
                 <coordinates>0.613515,41.58644,0.0</coordinates>
             </Point>
         </Placemark>
+        <Placemark id="feat_4">
+            <name>SensorApi8</name>
+            <description>28.2</description>
+            <Point id="geom_2">
+                <coordinates>0.611657,41.590066,0.0</coordinates>
+            </Point>
+        </Placemark>
     </Document>
 </kml>
