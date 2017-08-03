@@ -195,7 +195,7 @@ router.get('/attribute/:attributeName', function(req, res) {
         if (isValid(Object.keys(sensor.toJSON()), attributeName)){
           var attributeValue = {};
           attributeValue.sensorName = sensor.name;
-          attributeValue.sensorvalue = sensor[attributeName];
+          attributeValue.sensorValue = sensor[attributeName];
           jsonResponse.values.push(attributeValue);
         }
       });
