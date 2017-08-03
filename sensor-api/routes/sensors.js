@@ -26,9 +26,125 @@ io.set("origins", "*:*");
 router.get('/', function(req, res) {
   sensor.find(function (err, sensors) {
     if (err) return next(err);
-    res.json(sensors);
+
+    var jsonResponse = {
+      summary: {},
+      sensors: []
+    };
+
+    jsonResponse.summary = getSummary(sensors);
+    jsonResponse.sensors = sensors;
+
+    res.json(jsonResponse);
   });
 });
+
+/*
+Summary JSON response has this content:
+"summary": {
+       "sensors": {
+      // Available sensors are those who have some attribute value.
+           "available": [
+               "SensorApi1",
+               ...
+           ],
+      // Unavailable sensors are those who don't have any attribute value.
+           "unavailable": [
+               "SensorApi8",
+               ...
+           ]
+       },
+       "attributes": {
+      // Available attributes are those who have a value in some sensor.
+      // The structure of available attributes is:
+      // "Name_of_attribute": Number_of_appearances_in_sensors
+           "available": {
+               "valueAirTemperature": 7,
+               ...
+           },
+      // Unavailable attributes are those who don't have any value in any sensor.
+           "unavailable": [
+                "valueUltrasound",
+                ...
+         ]
+       }
+   }
+*/
+
+function getSummary(sensors) {
+  var returnJson = {
+    sensors: {
+      available: [],
+      unavailable: []
+    },
+    attributes: {
+      available: {},
+      unavailable: []
+    }
+  };
+  var attributesCount = {};
+  var requiredKeys = [
+    '_id', 'name', 'locationLatitude', 'locationLongitude',
+    '__v', 'updated_at'
+  ];
+  sensors.forEach(function(sensor) {
+    var sensorKeys = Object.keys(sensor.toJSON());
+    if (isAvailable(sensorKeys, requiredKeys)) {
+      returnJson.sensors.available.push(sensor.name);
+    } else {
+      returnJson.sensors.unavailable.push(sensor.name);
+    }
+    countAttributes(sensorKeys, requiredKeys, attributesCount);
+  });
+  returnJson.attributes.available = attributesCount;
+  returnJson.attributes.unavailable = getUnavailableAttributes(attributesCount);
+  return returnJson;
+}
+
+function countAttributes(sensorKeys, requiredKeys, attributesCount) {
+  sensorKeys.forEach(function(sensorKey) {
+    if (!(requiredKeys.indexOf(sensorKey) > -1 )) {
+      if (sensorKey in attributesCount) {
+        attributesCount[sensorKey] = attributesCount[sensorKey] + 1;
+      }
+      else {
+        attributesCount[sensorKey] = 1;
+      }
+    }
+  });
+}
+
+function getUnavailableAttributes(availableAttributes) {
+  var unavailableAttributes = []
+  var valuesKeys = [
+    'valueAirTemperature', 'valueAirHumidity', 'valueAirPressure',
+    'valueSoilTemperature', 'valueLeafWetness', 'valueAtmosphericPressure',
+    'valueSolarRadiation', 'valueUltravioletRadiation', 'valueTrunkDiameter',
+    'valueStemDiameter', 'valueFruitDiameter', 'valueAnemometer',
+    'valueWindVane', 'valuePluviometer', 'valueLuminosity', 'valueUltrasound'
+  ];
+  valuesKeys.forEach(function(valuesKey) {
+    if (!(valuesKey in availableAttributes)) {
+      unavailableAttributes.push(valuesKey);
+    }
+  });
+  return unavailableAttributes;
+}
+
+function isAvailable(sensorKeys, requiredKeys) {
+  /*
+  Look for sensor's keys corresponding to a value.
+  If none is found, return false, which means this sensor is unavailable
+  */
+  var returnBoolean = false;
+  for (i = 0; i < sensorKeys.length; i++) {
+    if (sensorKeys[i].indexOf('value') == 0) {
+      returnBoolean = true;
+      break;
+    }
+  }
+  return returnBoolean;
+}
 
 /* GET /sensors/sensorId */
 /*
@@ -121,7 +237,7 @@ router.put('/:sensorName', function(req, res) {
   })
 });
 
-router.delete('/delete/:id', function (req, res) {
+router.delete('/:id', function (req, res) {
   sensor.findById(req.params.id, function (err, sensor) {
     if (err) {
       return console.log(err);
