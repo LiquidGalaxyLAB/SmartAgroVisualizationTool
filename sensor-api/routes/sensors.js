@@ -116,13 +116,7 @@ function countAttributes(sensorKeys, requiredKeys, attributesCount) {
 
 function getUnavailableAttributes(availableAttributes) {
   var unavailableAttributes = []
-  var valuesKeys = [
-    'valueAirTemperature', 'valueAirHumidity', 'valueAirPressure',
-    'valueSoilTemperature', 'valueLeafWetness', 'valueAtmosphericPressure',
-    'valueSolarRadiation', 'valueUltravioletRadiation', 'valueTrunkDiameter',
-    'valueStemDiameter', 'valueFruitDiameter', 'valueAnemometer',
-    'valueWindVane', 'valuePluviometer', 'valueLuminosity', 'valueUltrasound'
-  ];
+  var valuesKeys = getValuesKeys();
   valuesKeys.forEach(function(valuesKey) {
     if (!(valuesKey in availableAttributes)) {
       unavailableAttributes.push(valuesKey);
@@ -131,7 +125,17 @@ function getUnavailableAttributes(availableAttributes) {
   return unavailableAttributes;
 }
 
-function isAvailable(sensorKeys, requiredKeys) {
+function getValuesKeys() {
+  return [
+    'valueAirTemperature', 'valueAirHumidity', 'valueAirPressure',
+    'valueSoilTemperature', 'valueLeafWetness', 'valueAtmosphericPressure',
+    'valueSolarRadiation', 'valueUltravioletRadiation', 'valueTrunkDiameter',
+    'valueStemDiameter', 'valueFruitDiameter', 'valueAnemometer',
+    'valueWindVane', 'valuePluviometer', 'valueLuminosity', 'valueUltrasound'
+  ];
+}
+
+function isAvailable(sensorKeys) {
   /*
   Look for sensor's keys corresponding to a value.
   If none is found, return false, which means this sensor is unavailable
@@ -163,6 +167,57 @@ router.get('/:sensorName', function(req, res) {
     res.json(sensor);
   })
 });
+
+/*
+GET /sensors/attribute/attributeName has this context:
+{
+    "name": "valueAirTemperature",
+    "values": [
+        {
+            "sensorName": "SensorApi1",
+            "sensorvalue": 1
+        },
+        ...
+    ]
+}
+*/
+
+router.get('/attribute/:attributeName', function(req, res) {
+  var attributeName = req.params.attributeName;
+  if (isValid(getValuesKeys(), attributeName)) {
+    sensor.find(function (err, sensors) {
+      var jsonResponse = {
+        name: '',
+        values: []
+      };
+      jsonResponse.name = attributeName;
+      sensors.forEach(function(sensor) {
+        if (isValid(Object.keys(sensor.toJSON()), attributeName)){
+          var attributeValue = {};
+          attributeValue.sensorName = sensor.name;
+          attributeValue.sensorvalue = sensor[attributeName];
+          jsonResponse.values.push(attributeValue);
+        }
+      });
+      res.json(jsonResponse);
+    });
+  }
+  else {
+    res.json('ERROR: ' + attributeName + 'is not a valid attribute \
+     name');
+  }
+});
+
+function isValid(keys, attributeName) {
+  var returnBoolean = false;
+  for (i = 0; i < keys.length; i++) {
+    if (keys[i].indexOf(attributeName) == 0) {
+      returnBoolean = true;
+      break;
+    }
+  }
+  return returnBoolean;
+}
 
 router.get('/kml/getKml/:kmlName', function(req, res) {
   res.set('Content-Type', 'text/xml');

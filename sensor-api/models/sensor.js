@@ -5,7 +5,7 @@ datasheet (page 26):
 http://www.libelium.com/downloads/documentation/waspmote_datasheet.pdf */
 
 var sensorSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, unique: true, required: true },
   locationLatitude: { type: Number, required: true },
   locationLongitude: { type: Number, required: true },
   valueAirTemperature: Number,
