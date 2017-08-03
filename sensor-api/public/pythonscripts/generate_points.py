@@ -24,16 +24,20 @@ class PointsKml(object):
 
     def parseData(self):
         for element in self.data:
-            self.newPoint(element['name'], str(element['description']),
+            self.newPoint(element['name'], element['description'],
             element['coordinates'])
 
     def newPoint(self, name, description, coordinates):
         new_point = self.kml_var.newpoint(name=name)
         self.addDescription(new_point, description)
         self.addCoords(new_point, coordinates)
+        self.addStyle(new_point)
 
     def addDescription(self, point, description):
-        point.description = description
+        description_string = ""
+        for k, v in description.iteritems():
+            description_string += str(k) + ': ' + str(v) + '\n'
+        point.description = description_string
 
     def addCoords(self, point, coordinates):
         # Longitude, Latitude, optional height
@@ -48,6 +52,10 @@ class PointsKml(object):
 
     def addImage(self, point, image):
         point.description = "<img src='" + image + "' width='500' />"
+
+    def addStyle(self, point):
+        point.style.labelstyle.color = simplekml.Color.green
+        point.style.iconstyle.icon.href = 'http://maps.google.com/mapfiles/kml/shapes/target.png'
 
     def saveKml(self):
         self.kml_var.save("public/kmls/data/" + self.name + ".kml")

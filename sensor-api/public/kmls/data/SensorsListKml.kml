@@ -1,25 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
     <Document id="feat_1">
+        <Style id="stylesel_0">
+            <IconStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_0">
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+            </IconStyle>
+            <LabelStyle id="substyle_0">
+                <color>ff008000</color>
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
+        <Style id="stylesel_1">
+            <IconStyle id="substyle_3">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_1">
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+            </IconStyle>
+            <LabelStyle id="substyle_2">
+                <color>ff008000</color>
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
+        <Style id="stylesel_2">
+            <IconStyle id="substyle_5">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_2">
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+            </IconStyle>
+            <LabelStyle id="substyle_4">
+                <color>ff008000</color>
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
+        <Style id="stylesel_3">
+            <IconStyle id="substyle_7">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_3">
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+            </IconStyle>
+            <LabelStyle id="substyle_6">
+                <color>ff008000</color>
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
+        <Style id="stylesel_4">
+            <IconStyle id="substyle_9">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_4">
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+            </IconStyle>
+            <LabelStyle id="substyle_8">
+                <color>ff008000</color>
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
+        <Style id="stylesel_5">
+            <IconStyle id="substyle_11">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_5">
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+            </IconStyle>
+            <LabelStyle id="substyle_10">
+                <color>ff008000</color>
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
+        <Style id="stylesel_6">
+            <IconStyle id="substyle_13">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_6">
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+            </IconStyle>
+            <LabelStyle id="substyle_12">
+                <color>ff008000</color>
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
         <Placemark id="feat_2">
-            <name>SensorApi10</name>
-            <description>28.3</description>
+            <name>SensorApi4</name>
+            <description>SolarRadiation: 4
+Anemometer: 4
+AirTemperature: 4
+AirPressure: 4
+LeafWetness: 4
+AtmosphericPressure: 4
+SoilTemperature: 4
+WindVane: 4
+UltravioletRadiation: 4
+StemDiameter: 4
+AirHumidity: 4
+TrunkDiameter: 4
+FruitDiameter: 4
+</description>
+            <styleUrl>#stylesel_0</styleUrl>
             <Point id="geom_0">
                 <coordinates>0.615151,41.583126,0.0</coordinates>
             </Point>
         </Placemark>
         <Placemark id="feat_3">
-            <name>SensorApi9</name>
-            <description>28.1</description>
+            <name>SensorApi3</name>
+            <description>SolarRadiation: 3
+Anemometer: 3
+AirTemperature: 3
+AirPressure: 3
+LeafWetness: 3
+Pluviometer: 3
+AtmosphericPressure: 3
+SoilTemperature: 3
+WindVane: 3
+UltravioletRadiation: 3
+StemDiameter: 3
+AirHumidity: 3
+TrunkDiameter: 3
+FruitDiameter: 3
+</description>
+            <styleUrl>#stylesel_1</styleUrl>
             <Point id="geom_1">
                 <coordinates>0.613515,41.58644,0.0</coordinates>
             </Point>
         </Placemark>
         <Placemark id="feat_4">
-            <name>SensorApi8</name>
-            <description>28.2</description>
+            <name>SensorApi2</name>
+            <description>SolarRadiation: 2
+Anemometer: 2
+AirTemperature: 2
+AirPressure: 2
+LeafWetness: 2
+Pluviometer: 2
+Luminosity: 2
+AtmosphericPressure: 2
+SoilTemperature: 2
+WindVane: 2
+UltravioletRadiation: 2
+StemDiameter: 2
+AirHumidity: 2
+TrunkDiameter: 2
+FruitDiameter: 2
+</description>
+            <styleUrl>#stylesel_2</styleUrl>
             <Point id="geom_2">
                 <coordinates>0.611657,41.590066,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_5">
+            <name>SensorApi1</name>
+            <description>SolarRadiation: 1
+Anemometer: 1
+AirTemperature: 1
+AirPressure: 1
+LeafWetness: 1
+Pluviometer: 1
+Luminosity: 1
+AtmosphericPressure: 1
+SoilTemperature: 1
+Ultrasound: 1
+WindVane: 1
+UltravioletRadiation: 1
+StemDiameter: 1
+AirHumidity: 1
+TrunkDiameter: 1
+FruitDiameter: 1
+</description>
+            <styleUrl>#stylesel_3</styleUrl>
+            <Point id="geom_3">
+                <coordinates>0.610396,41.589404,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_6">
+            <name>SensorApi6</name>
+            <description>SolarRadiation: 6
+AirTemperature: 6
+AirPressure: 6
+LeafWetness: 6
+AtmosphericPressure: 6
+SoilTemperature: 6
+UltravioletRadiation: 6
+StemDiameter: 6
+AirHumidity: 6
+TrunkDiameter: 6
+FruitDiameter: 6
+</description>
+            <styleUrl>#stylesel_4</styleUrl>
+            <Point id="geom_4">
+                <coordinates>0.611263,41.581849,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_7">
+            <name>SensorApi5</name>
+            <description>SolarRadiation: 5
+Anemometer: 5
+AirTemperature: 5
+AirPressure: 5
+LeafWetness: 5
+AtmosphericPressure: 5
+SoilTemperature: 5
+UltravioletRadiation: 5
+StemDiameter: 5
+AirHumidity: 5
+TrunkDiameter: 5
+FruitDiameter: 5
+</description>
+            <styleUrl>#stylesel_5</styleUrl>
+            <Point id="geom_5">
+                <coordinates>0.613218,41.582444,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_8">
+            <name>SensorApi7</name>
+            <description>SolarRadiation: 7
+AirTemperature: 7
+AirPressure: 7
+LeafWetness: 7
+AtmosphericPressure: 7
+SoilTemperature: 7
+UltravioletRadiation: 7
+StemDiameter: 7
+AirHumidity: 7
+TrunkDiameter: 7
+</description>
+            <styleUrl>#stylesel_6</styleUrl>
+            <Point id="geom_6">
+                <coordinates>0.610802,41.585501,0.0</coordinates>
             </Point>
         </Placemark>
     </Document>
