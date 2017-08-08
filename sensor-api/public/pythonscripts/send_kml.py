@@ -1,9 +1,11 @@
 import sys
 import os
+import datetime
 
 def generateKmlTxt(kml_name):
     f = open("public/kmls/help/kmls.txt", 'w')
-    f.write("http://10.160.67.190:3000/kmls/data/" + kml_name + ".kml")
+    time_number = str(datetime.datetime.now())
+    f.write("http://10.160.67.190:3000/kmls/data/" + kml_name + ".kml" + "?v=" + time_number)
     f.close()
 
 def sendKml():
