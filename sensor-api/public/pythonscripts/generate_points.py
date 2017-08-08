@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import simplekml
+from create_tour import addPointToTour
 
 class PointsKml(object):
     # Nom (sera utilitzat per guardar el fitxer KML)
@@ -12,6 +13,7 @@ class PointsKml(object):
     # Variables fixes del placemarks
     # (el seu valor sera el mateix en qualsevol placemark)
 
+    playlist_var = None
 
     def __init__(self, name, data):
         self.name = name
@@ -19,19 +21,25 @@ class PointsKml(object):
         self.kml_var = simplekml.Kml()
 
     def makeKML(self):
+        self.initTour()
         self.parseData()
         self.saveKml()
 
+    def initTour(self):
+        self.playlist_var = self.kml_var.newgxtour(name=self.name).newgxplaylist()
+
     def parseData(self):
         for element in self.data:
-            self.newPoint(element['name'], element['date'],
+            placemark_id = self.newPoint(element['name'], element['date'],
             element['description'], element['coordinates'])
+            addPointToTour(self.playlist_var, element['coordinates'], placemark_id)
 
     def newPoint(self, name, date, description, coordinates):
         new_point = self.kml_var.newpoint(name="")
         self.addDescription(new_point, name, date, description)
         self.addCoords(new_point, coordinates)
         self.addStyle(new_point)
+        return new_point.placemark.id
 
     def addDescription(self, point, name, date, description):
 
