@@ -1,2 +1,0 @@
-http://10.160.67.190:3000/kmls/network/SensorsListKml_link.kml
-http://10.160.67.190:3000/kmls/network/ImagesOverlayKml_link.kml

@@ -10,6 +10,7 @@ data = []
 for element in json_data['sensors']:
     point = {}
     point['name'] = element['name']
+    point['date'] = element['date']
     point['description'] = {}
     point['description'] = element['data']
     point['coordinates'] = {}
