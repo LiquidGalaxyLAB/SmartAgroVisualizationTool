@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;  
+var field = require('../models/field.js');
 
 /* Sensor attribute types found on Libelium's Waspmote smart agriculture device
 datasheet (page 26):
@@ -8,6 +10,7 @@ var sensorSchema = new mongoose.Schema({
   name: { type: String, unique: true, required: true },
   locationLatitude: { type: Number, required: true },
   locationLongitude: { type: Number, required: true },
+  field: { type: Schema.ObjectId, ref: 'field', required: true },
   valueAirTemperature: Number,
   valueAirHumidity: Number,
   valueAirPressure: Number,

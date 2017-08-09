@@ -85,7 +85,7 @@ function getSummary(sensors) {
   var attributesCount = {};
   var requiredKeys = [
     '_id', 'name', 'locationLatitude', 'locationLongitude',
-    '__v', 'updated_at'
+    '__v', 'updated_at', 'field'
   ];
   sensors.forEach(function(sensor) {
     var sensorKeys = Object.keys(sensor.toJSON());
