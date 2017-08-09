@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var routes = require('./routes/index');
 var sensors = require('./routes/sensors');
 var images = require('./routes/images');
+var fields = require('./routes/fields');
 
 var app = express();
 
@@ -44,6 +45,7 @@ io.on('connection', (socket) => {
 app.use('/', routes);
 app.use('/sensors', sensors);
 app.use('/images', images);
+app.use('/fields', fields);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
