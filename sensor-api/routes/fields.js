@@ -3,6 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var field = require('../models/field.js');
+var sensor = require('../models/sensor.js');
 
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -10,12 +11,23 @@ router.use(function(req, res, next) {
   next();
 });
 
-/* GET /fields listing. */
+/*
+GET /fields simple listing.
+GET /fields?detailed fields listing with all the sensors information.
+*/
 router.get('/', function(req, res) {
-  field.find(function(err, fields) {
-    if (err) return next(err);
-    res.json(fields);
-  });
+    field.find(function(err, fields) {
+      if (err) return next(err);
+      if (req.query.hasOwnProperty('detailed')) {
+        sensor.populate(fields, {path: "sensors"}, function(err, fields) {
+          if (err) return next(err);
+          res.json(fields);
+        });
+      }
+      else {
+          res.json(fields);
+      }
+    });
 });
 
 /* GET /fields/fieldName */
