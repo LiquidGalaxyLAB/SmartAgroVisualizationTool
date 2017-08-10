@@ -30,8 +30,16 @@ router.get('/', function(req, res) {
     });
 });
 
-/* GET /authors/authorName */
-router.get('/:authorName', function(req, res) {
+/* GET /authors/authorId */
+router.get('/:id', function(req, res) {
+  author.findById(req.params.id, function (err, author) {
+    if (err) console.log(err);
+    res.json(author);
+  });
+});
+
+/* GET /authors/name/authorName */
+router.get('/name/:authorName', function(req, res) {
   author.find().byName(req.params.authorName).exec(function(err, author) {
     if (err) console.log(err);
     res.json(author);

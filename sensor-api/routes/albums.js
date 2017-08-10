@@ -30,8 +30,16 @@ router.get('/', function(req, res) {
     });
 });
 
-/* GET /albums/albumName */
-router.get('/:albumName', function(req, res) {
+/* GET /albums/albumId */
+router.get('/:id', function(req, res) {
+  album.findById(req.params.id, function (err, album) {
+    if (err) console.log(err);
+    res.json(album);
+  });
+});
+
+/* GET /albums/name/albumName */
+router.get('/name/:albumName', function(req, res) {
   album.find().byName(req.params.albumName).exec(function(err, album) {
     if (err) console.log(err);
     res.json(album);

@@ -151,17 +151,15 @@ function isAvailable(sensorKeys) {
 }
 
 /* GET /sensors/sensorId */
-/*
-router.get('/:sensorId', function(req, res) {
-  sensor.findById(req.params.sensorId, function (err, sensor) {
-    if (err) console.log(req.params.sensorName);
+router.get('/:id', function(req, res) {
+  sensor.findById(req.params.id, function (err, sensor) {
+    if (err) console.log(err);
     res.json(sensor);
   });
 });
-*/
 
 /* GET /sensors/sensorName */
-router.get('/:sensorName', function(req, res) {
+router.get('/name/:sensorName', function(req, res) {
   sensor.find().byName(req.params.sensorName).exec(function(err, sensor) {
     if (err) console.log(req.params.sensorName);
     res.json(sensor);

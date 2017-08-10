@@ -30,8 +30,16 @@ router.get('/', function(req, res) {
     });
 });
 
-/* GET /fields/fieldName */
-router.get('/:fieldName', function(req, res) {
+/* GET /fields/fieldId */
+router.get('/:id', function(req, res) {
+  field.findById(req.params.id, function (err, field) {
+    if (err) console.log(err);
+    res.json(field);
+  });
+});
+
+/* GET /fields/name/fieldName */
+router.get('/name/:fieldName', function(req, res) {
   field.find().byName(req.params.fieldName).exec(function(err, field) {
     if (err) console.log(err);
     res.json(field);
