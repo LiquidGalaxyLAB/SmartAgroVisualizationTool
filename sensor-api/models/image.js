@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 var imageSchema = new mongoose.Schema({
-  originalName: String,
-  fileName: String,
-  gpsLatitude: Number,
-  gpsLongitude: Number,
-  gpsAltitude: Number,
+  name: { type: String, unique: true, required: true },
+  url: { type: String, unique: true, required: true },
+  latitude: { type: Number, required: true },
+  longitude: { type: Number, required: true },
+  altitude: Number,
 });
 
 imageSchema.query.byName = function(originalName) {

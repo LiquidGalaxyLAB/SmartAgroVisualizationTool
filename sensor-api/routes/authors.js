@@ -49,8 +49,10 @@ router.get('/name/:authorName', function(req, res) {
 /* POST /authors
 Example POST call:
 {
-	"name": "author A",                     <-- Mandatory author
-	"description": "author A description."  <-- Optional author
+	"name": "author A",                         <-- Mandatory
+	"description": "author A description.",     <-- Optional
+  "logoUrl": "http://logo.com/author.png",    <-- Optional
+  "albums": ["album-1-id", album-2-id", ... ] <-- Mandatory
 }
 */
 router.post('/', function(req, res, next) {

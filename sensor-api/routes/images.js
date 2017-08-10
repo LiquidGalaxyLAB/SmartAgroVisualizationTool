@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var multer = require("multer");
 var crypto = require("crypto");
 var ExifImage = require('exif').ExifImage;
+var ip = require('ip');
 
 var mongoose = require('mongoose');
 var image = require('../models/image.js');
@@ -51,26 +52,24 @@ gps:
 */
 router.post('/', multer({ dest: 'public/photos/' }).single('upload'),
   function(req, res) {
-    console.log(req.file);
-    console.log(req.file.filename);
-
     try {
       new ExifImage({ image : 'public/photos/' + req.file.filename }, function (error, exifData) {
           if (error)
               console.log('Error: '+error.message);
             else
+              var ip_address = ip.address();
               var imageBody = {
-                originalName: req.file.originalname,
-                fileName: req.file.filename,
-                gpsLatitude: ConvertDMSToDD(
+                name: req.file.originalname,
+                url: 'http://' + ip_address + ':3000/photos/' + req.file.filename,
+                latitude: ConvertDMSToDD(
                   exifData.gps.GPSLatitude[0], exifData.gps.GPSLatitude[1],
                   exifData.gps.GPSLatitude[2], exifData.gps.GPSLatitudeRef
                 ),
-                gpsLongitude: ConvertDMSToDD(
+                longitude: ConvertDMSToDD(
                   exifData.gps.GPSLongitude[0], exifData.gps.GPSLongitude[1],
                   exifData.gps.GPSLongitude[2], exifData.gps.GPSLongitudeRef
                 ),
-                gpsAltitude: exifData.gps.GPSAltitude,
+                altitude: exifData.gps.GPSAltitude,
               }
               console.log(imageBody);
               image.create(imageBody, function (err, post) {
