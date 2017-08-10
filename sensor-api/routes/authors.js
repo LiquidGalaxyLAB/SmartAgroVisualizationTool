@@ -54,6 +54,8 @@ Example POST call:
 }
 */
 router.post('/', function(req, res, next) {
+  // Check if POST call has logoUrl. If it does not, add a default one.
+  if (req.body.logoUrl === undefined || req.body.logoUrl === '') req.body.logoUrl = 'https://png.icons8.com/old-time-camera/ios7/100'
   author.create(req.body, function(err, post) {
     if (err) return next(err);
     res.json(post);

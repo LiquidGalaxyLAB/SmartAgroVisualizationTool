@@ -5,6 +5,7 @@ var album = require('../models/album.js');
 var authorSchema = new mongoose.Schema({
   name: { type: String, unique: true, required: true },
   description: String,
+  logoUrl: String,
   albums: { type: [Schema.ObjectId], unique: true,
     ref: 'album', required: true },
 });
