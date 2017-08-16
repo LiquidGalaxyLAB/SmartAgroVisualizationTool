@@ -71,10 +71,9 @@ router.post('/', multer({ dest: 'public/photos/' }).single('upload'),
                 ),
                 altitude: exifData.gps.GPSAltitude,
               }
-              console.log(imageBody);
               image.create(imageBody, function (err, post) {
                 if (err) console.log(err);
-                res.json(post);
+                res.json(post._id);
               });
           });
     } catch (error) {

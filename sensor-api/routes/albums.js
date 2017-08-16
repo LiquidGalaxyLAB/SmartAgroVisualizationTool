@@ -60,6 +60,19 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.post('/upload/:albumName', function(req, res) {
+  var conditions = { name: req.params.albumName }
+  console.log(req.body);
+  var update = {
+    $push: {images: req.body.imageId}
+  }
+  album.update(conditions, update, function(err, raw) {
+    if (err) return console.log(err);
+    console.log(raw);
+    res.json(raw);
+  });
+});
+
 /* DELETE /albums/albumId */
 router.delete('/:id', function(req, res) {
   album.findById(req.params.id, function(err, album) {
