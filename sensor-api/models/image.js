@@ -6,10 +6,6 @@ var imageSchema = new mongoose.Schema({
   latitude: { type: Number, required: true },
   longitude: { type: Number, required: true },
   altitude: Number,
-  markerDL: [Number],
-  markerDR: [Number],
-  markerUR: [Number],
-  markerUL: [Number],
 });
 
 /* MarkerDL => Marker Down Left (Image corner) */

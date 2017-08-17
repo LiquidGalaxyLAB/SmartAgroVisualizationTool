@@ -112,28 +112,6 @@ router.post('/generateKml', function(req, res) {
   });
 });
 
-router.put('/saveMarkers/:id', function(req, res) {
-  if (Object.keys(req.body).length === 0) {
-    return console.log('There is no key in this call.');
-  }
-  if (Object.keys(req.body).length !== 1 || Object.keys(req.body)[0] !== 'markers') {
-    return console.log('Not the key I was expecting.');
-  }
-  else {
-    var conditions = { _id: req.params.id }
-    var update = {
-      markerDL: req.body.markers[0],
-      markerDR: req.body.markers[1],
-      markerUR: req.body.markers[2],
-      markerUL: req.body.markers[3],
-    }
-    image.update(conditions, update, function(err, raw) {
-      if (err) return console.log(err);
-      res.json(raw);
-    });
-  }
-})
-
 router.delete('/:id', function(req, res) {
   image.findById(req.params.id, function (err, image) {
     if (err) {

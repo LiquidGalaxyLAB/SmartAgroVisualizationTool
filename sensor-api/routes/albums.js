@@ -68,7 +68,6 @@ router.post('/upload/:albumName', function(req, res) {
   }
   album.update(conditions, update, function(err, raw) {
     if (err) return console.log(err);
-    console.log(raw);
     res.json(raw);
   });
 });

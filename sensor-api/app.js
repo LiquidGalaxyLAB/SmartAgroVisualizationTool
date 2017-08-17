@@ -13,6 +13,7 @@ var images = require('./routes/images');
 var fields = require('./routes/fields');
 var albums = require('./routes/albums');
 var authors = require('./routes/authors');
+var overlays = require('./routes/overlays');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/images', images);
 app.use('/fields', fields);
 app.use('/albums', albums);
 app.use('/authors', authors);
+app.use('/overlays', overlays);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
