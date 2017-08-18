@@ -136,6 +136,22 @@ router.post('/generateKml', function(req, res) {
   });
 });
 
+/* DELETE /overlays/all ALL overlays */
+router.delete('/all', function(req, res) {
+  overlay.find(function (err, overlays) {
+    if (err) return next(err);
+    overlays.forEach( function (overlayElement) {
+      overlayElement.remove(function (err, overlay) {
+        if (err) {
+          return console.log(err);
+        } else {
+          res.json({ message: 'All overlays DELETED' });
+        }
+      });
+    });
+  });
+});
+
 /* DELETE /overlays/overlayId */
 router.delete('/:id', function(req, res) {
   overlay.findById(req.params.id, function(err, overlay) {

@@ -78,6 +78,22 @@ router.post('/', multer({ dest: 'public/photos/' }).single('upload'),
     //res.json(req.file.originalname);
 });
 
+/* DELETE /images/all ALL images */
+router.delete('/all', function(req, res) {
+  image.find(function (err, images) {
+    if (err) return next(err);
+    images.forEach( function (imageElement) {
+      imageElement.remove(function (err, image) {
+        if (err) {
+          return console.log(err);
+        } else {
+          res.json({ message: 'All images DELETED' });
+        }
+      });
+    });
+  });
+});
+
 router.delete('/:id', function(req, res) {
   image.findById(req.params.id, function (err, image) {
     if (err) {

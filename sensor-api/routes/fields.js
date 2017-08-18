@@ -60,6 +60,22 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/* DELETE /fields/all ALL fields */
+router.delete('/all', function(req, res) {
+  field.find(function (err, fields) {
+    if (err) return next(err);
+    fields.forEach( function (fieldElement) {
+      fieldElement.remove(function (err, field) {
+        if (err) {
+          return console.log(err);
+        } else {
+          res.json({ message: 'All fields DELETED' });
+        }
+      });
+    });
+  });
+});
+
 /* DELETE /fields/fieldId */
 router.delete('/:id', function(req, res) {
   field.findById(req.params.id, function(err, field) {

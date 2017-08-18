@@ -64,6 +64,22 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/* DELETE /authors/all ALL authors */
+router.delete('/all', function(req, res) {
+  author.find(function (err, authors) {
+    if (err) return next(err);
+    authors.forEach( function (authorElement) {
+      authorElement.remove(function (err, author) {
+        if (err) {
+          return console.log(err);
+        } else {
+          res.json({ message: 'All authors DELETED' });
+        }
+      });
+    });
+  });
+});
+
 /* DELETE /authors/authorId */
 router.delete('/:id', function(req, res) {
   author.findById(req.params.id, function(err, author) {

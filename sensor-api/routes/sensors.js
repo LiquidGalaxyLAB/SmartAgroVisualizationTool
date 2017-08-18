@@ -290,6 +290,22 @@ router.put('/:sensorName', function(req, res) {
   })
 });
 
+/* DELETE /sensors/all ALL sensors */
+router.delete('/all', function(req, res) {
+  sensor.find(function (err, sensors) {
+    if (err) return next(err);
+    sensors.forEach( function (sensorElement) {
+      sensorElement.remove(function (err, sensor) {
+        if (err) {
+          return console.log(err);
+        } else {
+          res.json({ message: 'All sensors DELETED' });
+        }
+      });
+    });
+  });
+});
+
 router.delete('/:id', function (req, res) {
   sensor.findById(req.params.id, function (err, sensor) {
     if (err) {

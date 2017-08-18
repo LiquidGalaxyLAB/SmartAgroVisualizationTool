@@ -72,6 +72,22 @@ router.post('/upload/:albumName', function(req, res) {
   });
 });
 
+/* DELETE /albums/all ALL albums */
+router.delete('/all', function(req, res) {
+  album.find(function (err, albums) {
+    if (err) return next(err);
+    albums.forEach( function (albumElement) {
+      albumElement.remove(function (err, album) {
+        if (err) {
+          return console.log(err);
+        } else {
+          res.json({ message: 'All albums DELETED' });
+        }
+      });
+    });
+  });
+});
+
 /* DELETE /albums/albumId */
 router.delete('/:id', function(req, res) {
   album.findById(req.params.id, function(err, album) {
