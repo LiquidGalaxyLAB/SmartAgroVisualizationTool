@@ -14,16 +14,20 @@ json_data = json.loads(readVariable)
 # coordinate corresponding to the lower-left corner of the overlayed image.
 # eg. [(0, 1), (1,1), (1,0), (0,0)]
 
-data = []
-for element in json_data['images']:
-    overlay = {}
-    overlay['name'] = element['name']
-    overlay['url'] = element['url']
-    overlay['coordinates'] = {}
-    overlay['coordinates']['lower-left'] = element['coords']['lower-left']
-    overlay['coordinates']['lower-right'] = element['coords']['lower-right']
-    overlay['coordinates']['upper-right'] = element['coords']['upper-right']
-    overlay['coordinates']['upper-left'] = element['coords']['upper-left']
-    data.append(overlay)
+data = {}
+data['layers'] = []
+for image in json_data['images']:
+    layer = {}
+    layer['name'] = image['name']
+    layer['url'] = image['url']
+    data['layers'].append(layer)
+data['corners'] = {}
+data['corners']['down-left'] = json_data['corners']['down-left']
+data['corners']['down-right'] = json_data['corners']['down-right']
+data['corners']['up-right'] = json_data['corners']['up-right']
+data['corners']['up-left'] = json_data['corners']['up-left']
+data['coordinates'] = {}
+data['coordinates']['lat'] = json_data['coordinates']['latitude']
+data['coordinates']['lng'] = json_data['coordinates']['longitude']
 overlays = OverlaysKml(json_data['name'], data)
 overlays.makeKML()

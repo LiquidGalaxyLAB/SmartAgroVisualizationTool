@@ -2,11 +2,12 @@ import sys
 import os
 import datetime
 import time
+import socket
 
-def generateKmlTxt(kml_name):
+def generateKmlTxt(kml_name, lgIp):
     f = open("public/kmls/help/kmls.txt", 'w')
     time_number = str(datetime.datetime.now())
-    f.write("http://10.160.67.190:3000/kmls/data/" + kml_name + ".kml" + "?v=" + time_number)
+    f.write("http://" + lgIp + ":3000/kmls/data/" + kml_name + ".kml" + "?v=" + time_number)
     f.close()
 
 def generateTour(tour_name):
@@ -35,7 +36,11 @@ def playTour(tour_name):
     os.system(command)
 
 def main(kml_name):
-    generateKmlTxt(kml_name)
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    ip = s.getsockname()[0]
+    s.close()
+    generateKmlTxt(kml_name, ip)
     sendKml()
     playTour(kml_name)
 
