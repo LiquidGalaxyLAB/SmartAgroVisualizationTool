@@ -6,7 +6,7 @@ var albumSchema = new mongoose.Schema({
   name: { type: String, unique: true, required: true },
   description: String,
   images: { type: [Schema.ObjectId], unique: true,
-    ref: 'image', required: true },
+    ref: 'image' },
 });
 
 albumSchema.query.byName = function(name) {

@@ -15,7 +15,7 @@ def addPointToTour(playlist, coordinates, placemark_id):
                                         '<gx:balloonVisibility>1</gx:balloonVisibility></Placemark>' \
         .format(placemark_id)
 
-    rotate(playlist, latitude, longitude, 1000, 5000)
+    rotate(playlist, latitude, longitude, 1000, 5000, 77)
     playlist.newgxwait(gxduration=5.0)
 
     animatedupdateshow = playlist.newgxanimatedupdate(gxduration=0.1)
