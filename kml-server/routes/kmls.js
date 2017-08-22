@@ -81,4 +81,52 @@ router.post('/overlays', function(req, res) {
   });
 });
 
+router.post('/demos/sensors', function(req, res) {
+  var options = {
+    mode: 'text',
+    pythonPath: 'python',
+    pythonOptions: ['-u'],
+    scriptPath: 'public/pythonscripts/',
+    args: ['demoSensors']
+  };
+
+  PythonShell.run('send_kml.py', options, function (err) {
+    if (err) return console.log(err);
+    console.log('KML sent correctly!');
+    res.json('OK');
+  });
+});
+
+router.post('/demos/overlays', function(req, res) {
+  var options = {
+    mode: 'text',
+    pythonPath: 'python',
+    pythonOptions: ['-u'],
+    scriptPath: 'public/pythonscripts/',
+    args: ['demoOverlays']
+  };
+
+  PythonShell.run('send_kml.py', options, function (err) {
+    if (err) return console.log(err);
+    console.log('KML sent correctly!');
+    res.json('OK');
+  });
+});
+
+router.post('/demos/stop', function(req, res) {
+  var options = {
+    mode: 'text',
+    pythonPath: 'python',
+    pythonOptions: ['-u'],
+    scriptPath: 'public/pythonscripts/',
+    args: ['stop']
+  };
+
+  PythonShell.run('send_kml.py', options, function (err) {
+    if (err) return console.log(err);
+    console.log('KML sent correctly!');
+    res.json('OK');
+  });
+});
+
 module.exports = router;

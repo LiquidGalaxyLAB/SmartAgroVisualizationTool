@@ -10,10 +10,6 @@ def generateKmlTxt(kml_name, lgIp):
     f.write("http://" + lgIp + ":3003/kmls/data/" + kml_name + ".kml" + "?v=" + time_number)
     f.close()
 
-def generateTour(tour_name):
-    f = open("public/kmls/help/query.txt", 'w')
-    f.write("playtour=" + '"' + tour_name + '"')
-
 def sendKml():
     filePath = "public/kmls/help/kmls.txt"
     lg_ip = "10.160.67.206"
@@ -36,13 +32,16 @@ def playTour(tour_name):
     os.system(command)
 
 def main(kml_name):
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(("8.8.8.8", 80))
-    ip = s.getsockname()[0]
-    s.close()
-    generateKmlTxt(kml_name, ip)
-    sendKml()
-    playTour(kml_name)
+    if kml_name == 'stop':
+        stopTour()
+    else:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        generateKmlTxt(kml_name, ip)
+        sendKml()
+        playTour(kml_name)
 
 if __name__ == "__main__":
     main(sys.argv[1])
