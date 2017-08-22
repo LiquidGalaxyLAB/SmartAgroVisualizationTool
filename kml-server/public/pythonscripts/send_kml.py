@@ -7,7 +7,7 @@ import socket
 def generateKmlTxt(kml_name, lgIp):
     f = open("public/kmls/help/kmls.txt", 'w')
     time_number = str(datetime.datetime.now())
-    f.write("http://" + lgIp + ":3000/kmls/data/" + kml_name + ".kml" + "?v=" + time_number)
+    f.write("http://" + lgIp + ":3003/kmls/data/" + kml_name + ".kml" + "?v=" + time_number)
     f.close()
 
 def generateTour(tour_name):
