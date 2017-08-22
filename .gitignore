@@ -87,7 +87,7 @@ db
 
 #Public file folders
 generators/
-kmls/help/
+help/
 ImagesOverlayKml.kml
 SensorsListKml.kml
 photos/
