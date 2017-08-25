@@ -82,11 +82,7 @@ yarn-error.log
 # rollup-test output
 /modules/rollup-test/dist/
 
-#MongoGitignore
-db
-
 #Public file folders
-generators/
 ImagesOverlayKml.kml
 SensorsListKml.kml
 photos/
