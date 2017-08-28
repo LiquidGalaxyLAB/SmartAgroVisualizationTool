@@ -43,8 +43,9 @@ npm start
 
 Inside [kml-server](https://github.com/calv00/SmartAgroVisualizationTool/tree/master/kml-server):
 ```shell
-npm start
+npm start -- LIQUID_GALAXY_IP
 ```
+being LIQUID_GALAXY_IP the ip address of the Liquid Galaxy the user wants to display the KMLs.
 
 ## Developing
 
