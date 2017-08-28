@@ -51,7 +51,7 @@ class PointsKml(object):
     def addDescription(self, point, name, date, description):
 
         htmlString = '<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">'
-        htmlString += '<link rel="stylesheet" type="text/css" href="http://' + self.ip + ':3000/stylesheets/sensor-theme.css">'
+        htmlString += '<link rel="stylesheet" type="text/css" href="http://' + self.ip + ':3003/stylesheets/sensor-theme.css">'
 
         htmlString += '<div class="table-title">\
                         <h3>'
