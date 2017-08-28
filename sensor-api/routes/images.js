@@ -56,7 +56,7 @@ router.post('/', multer({ dest: 'public/photos/' }).single('upload'),
               var ip_address = ip.address();
               var imageBody = {
                 name: req.file.originalname,
-                url: 'http://' + ip_address + ':3000/photos/' + req.file.filename,
+                url: 'http://' + ip_address + ':3002/photos/' + req.file.filename,
                 latitude: ConvertDMSToDD(
                   exifData.gps.GPSLatitude[0], exifData.gps.GPSLatitude[1],
                   exifData.gps.GPSLatitude[2], exifData.gps.GPSLatitudeRef
