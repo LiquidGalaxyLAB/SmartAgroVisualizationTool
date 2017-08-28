@@ -4,44 +4,53 @@ import datetime
 import time
 import socket
 
-def generateKmlTxt(kml_name, lgIp):
+def generateKmlTxt(kml_name, serverIp):
     f = open("public/kmls/help/kmls.txt", 'w')
     time_number = str(datetime.datetime.now())
-    f.write("http://" + lgIp + ":3003/kmls/data/" + kml_name + ".kml" + "?v=" + time_number)
+    f.write("http://" + serverIp + ":3003/kmls/data/" + kml_name + ".kml" + "?v=" + time_number)
     f.close()
 
-def sendKml():
+def sendKml(lgIp):
     filePath = "public/kmls/help/kmls.txt"
-    lg_ip = "10.160.67.206"
     locPath = "/var/www/html/"
-    # os.system("ssh-keyscan -H " + lg_ip + " >> ~/.ssh/known_hosts")
-    os.system("sshpass -p 'lqgalaxy' scp " + filePath + " lg@" + lg_ip + ":" + locPath)
+    # os.system("ssh-keyscan -H " + lgIp + " >> ~/.ssh/known_hosts")
+    os.system("sshpass -p 'lqgalaxy' scp " + filePath + " lg@" + lgIp + ":" + locPath)
 
-def stopTour():
-    lg_ip = "10.160.67.206"
-    command = "echo 'exittour=true' | sshpass -p 'lqgalaxy' ssh lg@" + lg_ip + \
+def stopTour(lgIp):
+    command = "echo 'exittour=true' | sshpass -p 'lqgalaxy' ssh lg@" + lgIp + \
               " 'cat - > /tmp/query.txt'"
     os.system(command)
 
-def playTour(tour_name):
-    stopTour()
+def playTour(tour_name, lgIp):
+    stopTour(lgIp)
     time.sleep(2)
-    lg_ip = "10.160.67.206"
     command = "echo 'playtour="+ tour_name +"' | sshpass -p 'lqgalaxy'\
-                 ssh lg@" + lg_ip + " 'cat - > /tmp/query.txt'"
+                 ssh lg@" + lgIp + " 'cat - > /tmp/query.txt'"
     os.system(command)
 
-def main(kml_name):
+def updateStyle(serverIp):
+    filePath = "public/kmls/templates/demoSensors.kml"
+    with open(filePath, 'r') as myfile:
+        data=myfile.read().replace('IP_TO_REPLACE', serverIp)
+    myfile.close()
+    f = open("public/kmls/data/demoSensors.kml", 'w')
+    f.write(data)
+    f.close()
+
+def main(kml_name, lgIp):
+    
     if kml_name == 'stop':
-        stopTour()
+        stopTour(lgIp)
     else:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
-        ip = s.getsockname()[0]
+        serverIp = s.getsockname()[0]
         s.close()
-        generateKmlTxt(kml_name, ip)
-        sendKml()
-        playTour(kml_name)
+        if kml_name == 'demoSensors':
+            updateStyle(serverIp)
+        generateKmlTxt(kml_name, serverIp)
+        sendKml(lgIp)
+        playTour(kml_name, lgIp)
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2])

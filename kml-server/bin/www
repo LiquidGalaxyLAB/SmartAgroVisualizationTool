@@ -3,8 +3,12 @@ var debug = require('debug')('my-application');
 var app = require('../app');
 
 app.set('port', process.env.PORT || 3003);
+var lgIp = process.argv[2];
 
 var server = app.listen(app.get('port'), function() {
+  console.log('Liquid Galaxy IP: ', lgIp);
   console.log('App running on port: ' + app.get('port'));
   debug('Express server listening on port ' + server.address().port);
 });
+
+exports.lgIp = lgIp;

@@ -1,3 +1,4 @@
+var www = require('../bin/www');
 var express = require('express');
 var router = express.Router();
 var bodyParser = require("body-parser");
@@ -18,6 +19,7 @@ router.use(function(req, res, next) {
 Sensors generate KML call
 */
 router.post('/sensors', function(req, res) {
+  var lgIp = www['lgIp'];
   if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
     console.log('ERROR: Generate KML call without object');
     res.json('ERROR');
@@ -35,7 +37,7 @@ router.post('/sensors', function(req, res) {
         pythonPath: 'python',
         pythonOptions: ['-u'],
         scriptPath: 'public/pythonscripts/',
-        args: [req.body.name]
+        args: [req.body.name, lgIp]
       };
 
       PythonShell.run('send_kml.py', options, function (err) {
@@ -52,6 +54,7 @@ router.post('/sensors', function(req, res) {
 Overlays generate KML call
 */
 router.post('/overlays', function(req, res) {
+  var lgIp = www['lgIp'];
   if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
     console.log('ERROR: Generate KML call without object');
     res.json('ERROR');
@@ -69,9 +72,9 @@ router.post('/overlays', function(req, res) {
         pythonPath: 'python',
         pythonOptions: ['-u'],
         scriptPath: 'public/pythonscripts/',
-        args: [req.body.name]
+        args: [req.body.name, lgIp]
       };
-
+var lgIp = no;
       PythonShell.run('send_kml.py', options, function (err) {
         if (err) return console.log(err);
         console.log('KML sent correctly!');
@@ -82,12 +85,13 @@ router.post('/overlays', function(req, res) {
 });
 
 router.post('/demos/sensors', function(req, res) {
+  var lgIp = www['lgIp'];
   var options = {
     mode: 'text',
     pythonPath: 'python',
     pythonOptions: ['-u'],
     scriptPath: 'public/pythonscripts/',
-    args: ['demoSensors']
+    args: ['demoSensors', lgIp]
   };
 
   PythonShell.run('send_kml.py', options, function (err) {
@@ -98,12 +102,13 @@ router.post('/demos/sensors', function(req, res) {
 });
 
 router.post('/demos/overlays', function(req, res) {
+  var lgIp = www['lgIp'];
   var options = {
     mode: 'text',
     pythonPath: 'python',
     pythonOptions: ['-u'],
     scriptPath: 'public/pythonscripts/',
-    args: ['demoOverlays']
+    args: ['demoOverlays', lgIp]
   };
 
   PythonShell.run('send_kml.py', options, function (err) {
@@ -114,12 +119,13 @@ router.post('/demos/overlays', function(req, res) {
 });
 
 router.post('/demos/stop', function(req, res) {
+  var lgIp = www['lgIp'];
   var options = {
     mode: 'text',
     pythonPath: 'python',
     pythonOptions: ['-u'],
     scriptPath: 'public/pythonscripts/',
-    args: ['stop']
+    args: ['stop', lgIp]
   };
 
   PythonShell.run('send_kml.py', options, function (err) {
