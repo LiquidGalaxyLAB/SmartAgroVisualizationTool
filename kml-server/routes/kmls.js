@@ -74,7 +74,6 @@ router.post('/overlays', function(req, res) {
         scriptPath: 'public/pythonscripts/',
         args: [req.body.name, lgIp]
       };
-var lgIp = no;
       PythonShell.run('send_kml.py', options, function (err) {
         if (err) return console.log(err);
         console.log('KML sent correctly!');
