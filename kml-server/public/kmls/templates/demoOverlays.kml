@@ -2046,7 +2046,7 @@
             <name>DJI_0017_VISUAL.jpg</name>
             <visibility>0</visibility>
             <Icon id="link_0">
-                <href>http://localhost:3002/photos/593048418805c9491ef78ae9fea15b6b</href>
+                <href>http://IP_TO_REPLACE:3002/photos/593048418805c9491ef78ae9fea15b6b</href>
             </Icon>
             <gx:LatLonQuad>
                 <coordinates>0.622926950455,41.5462073255,0.0 0.624278783798,41.5475322104,0.0 0.622594356537,41.5480541272,0.0 0.621317625046,41.5467854604,0.0</coordinates>
@@ -2056,7 +2056,7 @@
             <name>DJI_0017_FAKE_VEGETATION.jpg</name>
             <visibility>0</visibility>
             <Icon id="link_1">
-                <href>http://localhost:3002/photos/9d8c01b529d8b4f0b52d2ba4759b3b34</href>
+                <href>http://IP_TO_REPLACE:3002/photos/9d8c01b529d8b4f0b52d2ba4759b3b34</href>
             </Icon>
             <gx:LatLonQuad>
                 <coordinates>0.622926950455,41.5462073255,0.0 0.624278783798,41.5475322104,0.0 0.622594356537,41.5480541272,0.0 0.621317625046,41.5467854604,0.0</coordinates>
@@ -2066,7 +2066,7 @@
             <name>DJI_0017_FAKE_NITROGEN.jpg</name>
             <visibility>0</visibility>
             <Icon id="link_2">
-                <href>http://localhost:3002/photos/912b7597dc1803ae6d6e1f080c9f4159</href>
+                <href>http://IP_TO_REPLACE:3002/photos/912b7597dc1803ae6d6e1f080c9f4159</href>
             </Icon>
             <gx:LatLonQuad>
                 <coordinates>0.622926950455,41.5462073255,0.0 0.624278783798,41.5475322104,0.0 0.622594356537,41.5480541272,0.0 0.621317625046,41.5467854604,0.0</coordinates>
@@ -2076,7 +2076,7 @@
             <name>DJI_0017_FAKE_VIGOR.jpg</name>
             <visibility>0</visibility>
             <Icon id="link_3">
-                <href>http://localhost:3002/photos/ef2601aa201296a9f283dcca1056211a</href>
+                <href>http://IP_TO_REPLACE:3002/photos/ef2601aa201296a9f283dcca1056211a</href>
             </Icon>
             <gx:LatLonQuad>
                 <coordinates>0.622926950455,41.5462073255,0.0 0.624278783798,41.5475322104,0.0 0.622594356537,41.5480541272,0.0 0.621317625046,41.5467854604,0.0</coordinates>

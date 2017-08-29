@@ -37,6 +37,15 @@ def updateStyle(serverIp):
     f.write(data)
     f.close()
 
+def updateImageSource(serverIp):
+    filePath = "public/kmls/templates/demoOverlays.kml"
+    with open(filePath, 'r') as myfile:
+        data=myfile.read().replace('IP_TO_REPLACE', serverIp)
+    myfile.close()
+    f = open("public/kmls/data/demoOverlays.kml", 'w')
+    f.write(data)
+    f.close()
+
 def main(kml_name, lgIp):
     
     if kml_name == 'stop':
@@ -48,6 +57,8 @@ def main(kml_name, lgIp):
         s.close()
         if kml_name == 'demoSensors':
             updateStyle(serverIp)
+        elif kml_name == 'demoOverlays':
+            updateImageSource(serverIp)
         generateKmlTxt(kml_name, serverIp)
         sendKml(lgIp)
         playTour(kml_name, lgIp)
